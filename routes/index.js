@@ -19,6 +19,7 @@
  */
 
 var keystone = require('keystone');
+var moment = require('moment');
 var middleware = require('./middleware');
 var importRoutes = keystone.importer(__dirname);
 
@@ -40,7 +41,7 @@ exports = module.exports = function(app) {
 	app.get('/pages/:page', routes.views.page);
 
 	app.get('/blog/:category?', routes.views.blog);
-	app.get('/blog/post/:post', routes.views.post);
+	app.all('/blog/post/:post', routes.views.post);
 	app.all('/contact', routes.views.contact);
 
 	//session
