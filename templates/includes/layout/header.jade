@@ -1,0 +1,37 @@
+#header: .container
+
+  //- Customise your site's navigation by changing the navLinks Array in ./routes/middleware.js
+  //- ... or completely change this header to suit your design.
+
+  div(role="navigation").navbar.navbar-default.navbar-fixed-top
+    .container
+      .navbar-header
+        button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a.navbar-brand(href='/') upscale
+
+        //- User Avatar
+        if user
+              a(href='/me').user.visible-xs
+                  img(src=(user.photo.exists ? user._.photo.thumbnail(60,60) : user.gravatarUrl || 'images/avatar.png' ), width=27).img-circle
+        //- Patty
+        a#site-nave-toggle(href='javascript:;').site-nave-toggle
+        
+      .collapse.navbar-collapse
+        ul.nav.navbar-nav.navbar-left
+          each link in navLinks
+            li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
+        ul.nav.navbar-nav.navbar-right
+            if user
+                li: a(href='/me').user.hidden-xs
+                      img(src=(user.photo.exists ? user._.photo.thumbnail(27,27) : user.avatarUrl || '/images/avatar.png'), width=27).img-circle
+                      =user.name.first
+                li: a(href='/signout')
+                    span.visible-xs Sign out
+                    span.entypo.entypo-large.entypo-logout.hidden-xs
+            else
+                li: a(href='/signin', data-from=page.path, data-initial='signin').js-auth-trigger Sign in
+                li: a(href='/join', data-from=page.path).js-auth-trigger Join

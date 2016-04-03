@@ -27,7 +27,7 @@ User.add({
 	isVerified: { type: Boolean, label: 'Has a verified email address' }
 }, 'Profile', {
 	isPublic: { type: Boolean, default: true },
-	isEmployer: Boolean,
+	isEmployee: Boolean,
 	photo: { type: Types.CloudinaryImage },
 	website: { type: Types.Url },
 	bio: { type: Types.Markdown },
