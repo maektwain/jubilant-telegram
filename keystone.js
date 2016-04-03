@@ -38,6 +38,8 @@ keystone.init({
 
 	'cookie secret': process.env.COOKIE_SECRET || 'upscale',
 
+	'mandrill api key': process.env.MANDRILL_API_KEY,
+
 	'basedir':__dirname
 
 });
@@ -69,18 +71,12 @@ keystone.set('routes', require('./routes'));
 // default email templates, you may remove them if you're using your own.
 
 keystone.set('email locals', {
-	logo_src: '/images/logo-email.gif',
-	logo_width: 194,
-	logo_height: 76,
-	theme: {
-		email_bg: '#f9f9f9',
-		link_color: '#2697de',
-		buttons: {
-			color: '#fff',
-			background_color: '#2697de',
-			border_color: '#1a7cb7'
-		}
-	}
+	utils: keystone.utils,
+	host: (function() {
+		if (keystone.get('env') === 'staging') return '';
+		if (keystone.get('env') === 'production') return '	';
+		return (keystone.get('host') || 'http://localhost:') + (keystone.get('port') || '3000');
+	})()
 });
 
 // Setup replacement rules for emails, to automate the handling of differences
