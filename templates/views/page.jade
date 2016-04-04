@@ -1,0 +1,29 @@
+extends ../layouts/default
+
+block content
+	.container: .row: .col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2
+		article
+			p: a(href='/pages') &larr; back to theupscale
+			hr
+			if !data.page
+				h2 Invalid page.
+			else
+				header
+					h1= data.page.title
+					h5 Posted
+						if data.page.publishedDate
+							| on #{data.page._.publishedDate.format('MMMM Do, YYYY')}
+						if data.page.categories && data.page.categories.length
+							| in
+							each cat, cat_i in data.page.categories
+								a(href='/blog/' + cat.key)= cat.name
+								if cat_i < data.page.categories.length - 1
+									| ,
+								else
+									
+						if data.page.author
+							| by #{data.page.author.name.first}
+				.page
+					if data.page.image.exists
+						.image-wrap: img(src=data.page._.image.fit(750,450)).img-responsive
+					!= data.page.content.full
