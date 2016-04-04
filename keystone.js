@@ -1,9 +1,12 @@
 // Simulate config options from your production environment by
 // customising the .env file in your project's root folder.
+
+require('babel-register')({only: /\/graphql\/.*/ });
 require('dotenv').load();
 
 // Require keystone
 var keystone = require('keystone');
+var pkg = require('./package.json')
 
 // Initialise Keystone with your project's configuration.
 // See http://keystonejs.com/guide/config for available options
@@ -13,19 +16,29 @@ keystone.init({
 
 	'name': 'upscale',
 	'brand': 'upscale',
-	
+	'back': '/me',
+
 	'less': 'public',
 	'static': 'public',
 	'favicon': 'public/favicon.ico',
 	'views': 'templates/views',
 	'view engine': 'jade',
-	
+	'view-cache': false,
+
 	'emails': 'templates/emails',
-	
+
 	'auto update': true,
+
+	//'mongo': process.env.MONGO_URI || 'mongodb://localhost' + pkg.name,
+
 	'session': true,
+	'session store':'mongo',
 	'auth': true,
-	'user model': 'User'
+	'user model': 'User',
+
+	'cookie secret': process.env.COOKIE_SECRET || 'upscale',
+
+	'basedir':__dirname
 
 });
 
@@ -41,6 +54,9 @@ keystone.set('locals', {
 	_: require('underscore'),
 	env: keystone.get('env'),
 	utils: keystone.utils,
+	moment: require('moment'),
+	js: 'javascript:;',
+	plural: keystone.utils.plural,
 	editable: keystone.content.editable
 });
 
@@ -73,13 +89,13 @@ keystone.set('email locals', {
 // Be sure to update this rule to include your site's actual domain, and add
 // other rules your email templates require.
 
-keystone.set('email rules', [{
-	find: '/images/',
-	replace: (keystone.get('env') == 'production') ? 'http://www.your-server.com/images/' : 'http://localhost:3000/images/'
-}, {
-	find: '/keystone/',
-	replace: (keystone.get('env') == 'production') ? 'http://www.your-server.com/keystone/' : 'http://localhost:3000/keystone/'
-}]);
+// keystone.set('email rules', [{
+// 	find: '/images/',
+// 	replace: (keystone.get('env') == 'production') ? 'http://www.your-server.com/images/' : 'http://localhost:3000/images/'
+// }, {
+// 	find: '/keystone/',
+// 	replace: (keystone.get('env') == 'production') ? 'http://www.your-server.com/keystone/' : 'http://localhost:3000/keystone/'
+// }]);
 
 // Load your project's email test routes
 
