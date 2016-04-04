@@ -26,7 +26,8 @@ exports.initLocals = function(req, res, next) {
 	var locals = res.locals;
 
 	locals.navLinks = [
-		{ label: 'Home',		key: 'home',		href: '/' },
+		{ label: 'Product', key: 'products', href:'pages/product'},
+		{ label: 'Data Analysis', key:'datanalysis', href:'/pages/datanalysis'},
 		{ label: 'Blog',		key: 'blog',		href: '/blog' },
 		{ label: 'Contact',		key: 'contact',		href: '/contact' }
 	];
@@ -36,7 +37,7 @@ exports.initLocals = function(req, res, next) {
 	locals.basedir = keystone.get('basedir');
 
 	locals.page = {
-		title: 'Upscale',
+		title: 'Upscale Consultancy Services',
 		path: req.url.split("?")[0] // strip the query - handy for redirecting back to the page
 	};
 
