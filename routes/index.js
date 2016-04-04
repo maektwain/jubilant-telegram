@@ -19,6 +19,7 @@
  */
 
 var keystone = require('keystone');
+var moment = require('moment');
 var middleware = require('./middleware');
 var importRoutes = keystone.importer(__dirname);
 
@@ -28,7 +29,8 @@ keystone.pre('render', middleware.flashMessages);
 
 // Import Route Controllers
 var routes = {
-	views: importRoutes('./views')
+	views: importRoutes('./views'),
+	auth: importRoutes('./auth')
 };
 
 // Setup Route Bindings
@@ -39,7 +41,7 @@ exports = module.exports = function(app) {
 	app.get('/pages/:page', routes.views.page);
 
 	app.get('/blog/:category?', routes.views.blog);
-	app.get('/blog/post/:post', routes.views.post);
+	app.all('/blog/post/:post', routes.views.post);
 	app.all('/contact', routes.views.contact);
 
 	//session
@@ -49,7 +51,11 @@ exports = module.exports = function(app) {
 	app.all('/forgot-password', routes.views.session['forgot-password']);
 	app.all('/reset-password/:key', routes.views.session['reset-password']);
 
-	//User
+
+	// Authentication
+	app.all('/auth/confirm', routes.auth.confirm);
+	app.all('/auth/app', routes.auth.app);
+	app.all('/auth/:service', routes.auth.service);
 
 	// User
 	app.all('/me*', middleware.requireUser);
