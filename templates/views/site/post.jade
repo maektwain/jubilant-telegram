@@ -1,7 +1,26 @@
 extends ../../layouts/default
 
+block intro
+	.blog-post-header
+		h1.blog-post_title= post.title
+		p.blog-post__byline Posted
+			if post.author
+				|  by&nbsp;
+				span #{post.author.name.full}
+			if post.publishedDate
+				|  on #{post._.publishedDate.format('MMMM D, YYYY')}
+			if post.categories && post.categories.length
+				|  in&nbsp;
+				each cat, cat_i in post.categories
+					a(href='/blog/' + cat.key)= cat.name
+					if cat_i < post.categories.length - 1
+						| ,&nbsp;
+					else
+						|&nbsp;
+		
+
 block content
-	.container-sm
+	.container: .row.rowWithFullWidth
 		a(href='/blog').text-muted &larr; Back to the blog
 		article.full-post
 			if !post
@@ -13,21 +32,7 @@ block content
 							a(href='/keystone/posts/' + post.id).alert-link Open Keystone
 							|  to publish it.
 					
-					h1.blog-post__title= post.title
-					p.blog-post__byline Posted
-						if post.author
-							|  by&nbsp;
-							a(href='/members', rel='author')=post.author.name.full
-						if post.publishedDate
-							|  on #{post._.publishedDate.format('MMMM D, YYYY')}
-						if post.categories && post.categories.length
-							|  in&nbsp;
-							each cat, cat_i in post.categories
-								a(href='/blog/' + cat.key)= cat.name
-								if cat_i < post.categories.length - 1
-									| ,&nbsp;
-								else
-									|&nbsp;
+					
 					
 					//- sharing buttons
 					.share-buttons
