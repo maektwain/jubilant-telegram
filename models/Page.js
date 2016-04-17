@@ -19,9 +19,27 @@ Page.add({
 	image: { type: Types.CloudinaryImage },
 	content: {
 		brief: { type: Types.Html, wysiwyg: true, height: 150 },
-		extended: { type: Types.Html, wysiwyg: true, height: 400 }
+		extended: { type: Types.Html, wysiwyg: true, height: 400 },
 	},
-	categories: { type: Types.Relationship, ref: 'PageCategory', many: true }
+	headone: {
+		content:{type: String, required:false},
+		content_br:{type: String, required:false},
+		image:{type: Types.CloudinaryImage},
+		content_full:{type: String}
+	},
+	headtwo: {
+		content:{type: String, required:false},
+		content_br:{type: String, required:false},
+		image:{type: Types.CloudinaryImage},
+		content_full:{type: String}
+	},
+	headthree: {
+		content:{type: String, required:false},
+		content_br:{type: String, required:false},
+		image:{type: Types.CloudinaryImage},
+		content_full:{type: String}
+	},
+	pageCategory: { type: Types.Relationship, ref: 'pageCategory', many: true }
 });
 
 Page.schema.virtual('content.full').get(function() {

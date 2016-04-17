@@ -43,6 +43,7 @@ exports = module.exports = function(app) {
 	app.get('/blog/:category?', routes.views.blog);
 	app.all('/blog/post/:post', routes.views.post);
 	app.all('/contact', routes.views.contact);
+	
 
 	//session
 	app.all('/join', routes.views.session.join);

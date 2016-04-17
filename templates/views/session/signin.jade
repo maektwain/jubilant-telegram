@@ -3,11 +3,11 @@ extends ../../layouts/default
 block flash-messages
 	//- intentionally blank
 block content
-	.container-xs
-		.page-intro
+	.container-xs.content-section.row
+		.page-intro.col-md-3.col-md-offset-3
 			h1 Sign into Upscale
 			+flash-messages(messages)
-		.page-content
+		.page-content.col-md-6.col-md-offset-3
 			+auth-forms({ modal: false, initial: 'signin' })
 
 block js
