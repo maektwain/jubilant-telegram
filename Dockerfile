@@ -14,4 +14,4 @@ EXPOSE 3000
 
 CMD ["start"]
 
-ENTRYPOINT["./run.sh"]
+ENTRYPOINT ["./run.sh"]
