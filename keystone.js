@@ -74,8 +74,8 @@ keystone.set('email locals', {
 	utils: keystone.utils,
 	host: (function() {
 		if (keystone.get('env') === 'staging') return '';
-		if (keystone.get('env') === 'production') return '	';
-		return (keystone.get('host') || 'http://localhost:') + (keystone.get('port') || '3000');
+		if (keystone.get('env') === 'production') return '';
+		return (keystone.get('host') || 'http://localhost:') + (keystone.get('port') || '32772');
 	})()
 });
 
