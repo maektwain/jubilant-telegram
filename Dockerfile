@@ -1,9 +1,5 @@
-FROM centos:centos6
+FROM node:0.10-onbuild
 MAINTAINER Saransh Sharma <saransh@theupscale.in>, Upscale Team <team@theupscale.in>
-
-RUN yum install -y epel-release
-RUN yum install -y nodejs npm
-
 
 
 
