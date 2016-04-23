@@ -1,5 +1,10 @@
-FROM node:4-onbuild
+FROM centos:centos6
 MAINTAINER Saransh Sharma <saransh@theupscale.in>, Upscale Team <team@theupscale.in>
+
+RUN yum install -y epel-release
+RUN yum install -y nodejs npm
+
+
 
 
 #Download the latest version of app from git
