@@ -1,4 +1,4 @@
-FROM node:0.10-onbuild
+FROM node:0.12
 MAINTAINER Saransh Sharma <saransh@theupscale.in>, Upscale Team <team@theupscale.in>
 
 
