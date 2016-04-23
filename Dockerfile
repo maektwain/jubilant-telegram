@@ -12,6 +12,6 @@ RUN chmod +x run.sh
 
 EXPOSE 3000
 
-CMD["start"]
+CMD ["start"]
 
 ENTRYPOINT["./run.sh"]
