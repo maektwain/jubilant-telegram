@@ -1,7 +1,7 @@
 'use strict()';
 
 var config= {
-	port: 3000
+	port: 4000
 };
 
 module.exports = function(grunt) {
@@ -28,7 +28,7 @@ module.exports = function(grunt) {
 	};
 
 	var configs = require('load-grunt-configs')(grunt, options);
-	
+
 	// Project configuration.
 	grunt.initConfig(configs);
 

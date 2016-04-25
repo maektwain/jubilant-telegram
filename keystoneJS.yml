@@ -1,4 +1,4 @@
   keystone:
     image: theupscale/upscale
     ports:
-      - 3000:3000
+      - :3000

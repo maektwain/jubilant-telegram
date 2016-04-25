@@ -1,6 +1,6 @@
 module.exports = {
 	options: {
-		port: 3000
+		port: 4000
 	},
 	dev: {
 		options: {
