@@ -5,7 +5,7 @@ block intro
 block flash-messages
 
 block content
-	.container-sm
+	.container.rowWithFullWidthMe
 		.page-intro
 			p.lead Hi #{user.name.first}, these are your settings and
 				a(href=user.url) profile details
@@ -65,7 +65,7 @@ block content
 					.col-sm-10
 						label.checkbox-inline
 							input(type='checkbox', name='isPublic', value='true', checked=user.isPublic ? 'true' : null)
-							|  Show my profile on the SydJS website
+							|  Show my profile on the Upscale website
 				.form-group
 					label.col-sm-2.control-label Website
 					.col-sm-10: input(type='text', name='website' value=user.website).form-control

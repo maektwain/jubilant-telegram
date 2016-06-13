@@ -106,3 +106,57 @@
     table-layout: fixed;
     width: 100%;
 }
+.page-intro {
+	padding-bottom: @page-padding;
+	text-align: center;
+	h1 {
+		margin-bottom: 0.25em;
+	}
+	.buttons > .btn {
+		margin-right: 10px;
+	}
+	.lead {
+		max-width: 738px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+.page-content {
+	.floor;
+	.floor-1;
+}
+
+// Page section
+.section {
+	padding-bottom: @page-padding * 1.5;
+	padding-top: @page-padding * 1.5;
+}
+.section--featured {
+	padding-bottom: @page-padding * 1;
+	padding-top: @page-padding * 2.5;
+}
+
+// UI Reveal
+// --------------------------------------------------
+
+// show hidden UI
+.ui-reveal {
+	&.is-revealed {
+		.ui-reveal__hidden {
+			display: block;
+		}
+		.ui-reveal__initial {
+			display: none;
+		}
+	}
+}
+
+// hide by default
+.ui-reveal__hidden {
+	display: none;
+}
+
+.rowWithFullWidthMe{
+	margin-top: 10%;
+}
