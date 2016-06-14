@@ -50,7 +50,10 @@ User.add({
 
 });
 
-
+User.schema.methods.wasActive = function () {
+	this.lastActiveOn = new Date();
+	return this;
+}
 
 // Provide access to Keystone
 User.schema.virtual('canAccessKeystone').get(function() {
