@@ -7,21 +7,45 @@ var Types = keystone.Field.Types;
  */
 
 var PostComment = new keystone.List('PostComment', {
-	nocreate: true
+	label: 'Comments',
 });
 
 PostComment.add({
 	post: { type: Types.Relationship, ref: 'Post', index: true },
 	author: { type: Types.Relationship, ref: 'User', index: true },
-	date: { type: Types.Date, default: Date.now, index: true },
-	content: { type: Types.Markdown }
+	commentState: { type: Types.Select, options: ['published', 'draft', 'archived'], default: 'published', index: true },
+	publishedOn: { type: Types.Date, default: Date.now, index: true },
 });
+
+PostComment.add('Content',{
+	content:{type: Types.Html, wysiwyg: true, height: 300},
+});
+
+PostComment.schema.pre('save', function (next) {
+	this.wasNew = this.isNew;
+	if (!this.isModified('publishedOn') && this.isModified('commentState') && this.commentState === 'published') {
+		this.publishedOn = new Date();
+	}
+	next();
+});
+
+PostComment.schema.post('save', function () {
+	if (!this.wasNew) return;
+	if (this.author) {
+		keystone.list('User').model.findById(this.author).exec(function (err, user) {
+			if (user) {
+				user.wasActive().save();
+			}
+		});
+	}
+});
+
 
 
 /**
  * Registration
  * ============
  */
-
-PostComment.defaultColumns = 'post, author, date|20%';
+PostComment.track = true;
+PostComment.defaultColumns = 'author, post, publishedOn, commentState';
 PostComment.register();

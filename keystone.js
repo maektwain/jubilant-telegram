@@ -74,7 +74,7 @@ keystone.set('email locals', {
 	utils: keystone.utils,
 	host: (function() {
 		if (keystone.get('env') === 'staging') return '';
-		if (keystone.get('env') === 'production') return '';
+		if (keystone.get('env') === 'production') return 'http://theupscale.in';
 		return (keystone.get('host') || 'http://localhost:') + (keystone.get('port') || '32772');
 	})()
 });
@@ -100,7 +100,7 @@ keystone.set('email tests', require('./routes/emails'));
 // Configure the navigation bar in Keystone's Admin UI
 
 keystone.set('nav', {
-	'posts': ['posts', 'post-categories'],
+	'posts': ['posts','post-comments', 'post-categories'],
 	'enquiries': 'enquiries',
 	'users': 'users'
 });
