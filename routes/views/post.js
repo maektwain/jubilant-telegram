@@ -24,7 +24,6 @@ exports = module.exports = function(req, res) {
 			locals.post = result;
 			locals.page.title = result.title + ' - Blog - Upscale';
 			next(err);
-			console.log(err);
 		});
 
 	});
