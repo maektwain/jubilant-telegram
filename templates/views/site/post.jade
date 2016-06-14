@@ -2,7 +2,7 @@ extends ../../layouts/default
 include ../../mixins/commenting
 
 block intro
-	.blog-post-header
+	.blog-post-header(style='background-image: url(#{post.image.url})')
 		h1.blog-post_title= post.title
 		p.blog-post__byline Posted
 			if post.author
@@ -23,6 +23,7 @@ block intro
 block content
 	.container: .row.rowWithFullWidth
 		a(href='/blog').text-muted &larr; Back to the blog
+		hr
 		article.full-post
 			if !post
 				h2 Invalid Post.
@@ -43,8 +44,7 @@ block content
 							a(href="https://twitter.com/share", data-via="SydJS", data-hashtags="sydjs", data-count="button", data-dnt="true").twitter-share-button Tweet
 						span.share-button
 							.g-plusone(data-size="medium")
-				if post.image.exists
-					.post-image.mv-3: img(src=post._.image.fit(720,420)).img-responsive.img-thumbnail
+			div.row.col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
 				!= post.content.full
 				
 				div

@@ -114,7 +114,7 @@ exports = module.exports = function(req, res) {
 				comment.save(function (err) {
 					if (err) return res.err(err);
 					req.flash('success', 'Your comment has been deleted.');
-					return res.redirect('/blog/post/' + locals.post.key);
+					return res.redirect('/blog/post/' + locals.post.slug);
 				});
 			});
 	});

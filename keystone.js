@@ -74,7 +74,7 @@ keystone.set('email locals', {
 	utils: keystone.utils,
 	host: (function() {
 		if (keystone.get('env') === 'staging') return '';
-		if (keystone.get('env') === 'production') return '';
+		if (keystone.get('env') === 'production') return 'http://theupscale.in';
 		return (keystone.get('host') || 'http://localhost:') + (keystone.get('port') || '32772');
 	})()
 });
