@@ -14,14 +14,11 @@ exports = module.exports = function(req, res) {
 		post: req.params.post
 	};
 
-
-
 	view.on('init', function(next) {
 		var q = Post.model.findOne({
 			state: 'published',
 			slug: locals.filters.post,
 		}).populate('author categories');
-
 		q.exec(function (err, result) {
 			if (!result) return res.notfound("Blog", "Not Found oops");
 			locals.post = result;
