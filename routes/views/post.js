@@ -14,6 +14,8 @@ exports = module.exports = function(req, res) {
 		post: req.params.post
 	};
 
+	console.log(locals);
+
 	view.on('init', function(next) {
 		var q = Post.model.findOne({
 			state: 'published',
@@ -25,6 +27,7 @@ exports = module.exports = function(req, res) {
 		q.exec(function (err, result) {
 			locals.post = result;
 			locals.page.title = result.title + ' - Blog - Upscale';
+			console.log(result.title);
 			next(err);
 		});
 
