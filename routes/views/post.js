@@ -18,13 +18,17 @@ exports = module.exports = function(req, res) {
 		var q = Post.model.findOne({
 			state: 'published',
 			slug: locals.filters.post,
+
 		}).populate('author categories');
+		console.log(locals.filters.post);
 
 		q.exec(function (err, result) {
 			locals.post = result;
 			locals.page.title = result.title + ' - Blog - Upscale';
 			next(err);
 		});
+
+		console.log(q);
 
 	});
 
