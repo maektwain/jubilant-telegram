@@ -12,7 +12,11 @@ RUN cd app && ls &&  npm install
 ADD run.sh app/run.sh
 RUN chmod +x app/run.sh
 
-COPY .env app/
+RUN git clone https://gist.github.com/ea3ac0ca88638f641bbf716f0ecd5ca2.git
+
+
+
+COPY ea3ac0ca88638f641bbf716f0ecd5ca2/.env app/
 
 EXPOSE 4000
 
