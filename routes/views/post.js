@@ -22,16 +22,14 @@ exports = module.exports = function(req, res) {
 			slug: locals.filters.post,
 
 		}).populate('author categories');
-		console.log(locals.filters.post);
+		console.log("I am fine here" + locals.filters.post);
 
 		q.exec(function (err, result) {
 			locals.post = result;
 			locals.page.title = result.title + ' - Blog - Upscale';
-			console.log(result.title);
+			console.log("This is post" + result.title);
 			next(err);
 		});
-
-		console.log(q);
 
 	});
 
