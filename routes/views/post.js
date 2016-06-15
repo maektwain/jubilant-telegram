@@ -23,6 +23,7 @@ exports = module.exports = function(req, res) {
 		}).populate('author categories');
 
 		q.exec(function (err, result) {
+			if (!result) return res.notfound("Blog", "Not Found oops");
 			locals.post = result;
 			locals.page.title = result.title + ' - Blog - Upscale';
 			next(err);
