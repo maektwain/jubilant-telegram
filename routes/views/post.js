@@ -14,20 +14,18 @@ exports = module.exports = function(req, res) {
 		post: req.params.post
 	};
 
-	console.log(locals);
+
 
 	view.on('init', function(next) {
 		var q = Post.model.findOne({
 			state: 'published',
 			slug: locals.filters.post,
-
 		}).populate('author categories');
-		console.log("I am fine here" + locals.filters.post);
 
 		q.exec(function (err, result) {
+			if (err) return res.err(err);
 			locals.post = result;
 			locals.page.title = result.title + ' - Blog - Upscale';
-			console.log("This is post" + result.title);
 			next(err);
 		});
 
@@ -36,7 +34,6 @@ exports = module.exports = function(req, res) {
 	view.on('init', function (next) {
 
 		var q = Post.model.find().where('state', 'published').sort('-publishedDate').populate('author').limit(parseInt(4));
-
 		q.exec(function (err, results) {
 			locals.posts = results;
 			next(err);
