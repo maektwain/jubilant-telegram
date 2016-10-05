@@ -29,7 +29,7 @@ keystone.init({
 
 	'auto update': true,
 
-	'mongo' : process.env.MONGO_URI,
+	'mongo' : process.env.MONGODB_URI,
 	'cloudinary config' : process.env.CLOUDINARY_URL,
 
 	'session': true,
