@@ -2,7 +2,7 @@
 // customising the .env file in your project's root folder.
 
 require('babel-register')({only: /\/graphql\/.*/ });
-require('dotenv').load();
+//require('dotenv').load();
 
 // Require keystone
 var keystone = require('keystone');
@@ -74,7 +74,7 @@ keystone.set('routes', require('./routes'));
 keystone.set('email locals', {
 	utils: keystone.utils,
 	host: (function() {
-		if (process.env.NODE_ENV === 'staging') return '';
+		if (process.env.NODE_ENV	 === 'staging') return '';
 		if (process.env.NODE_ENV === 'production') return 'http://theupscale.in';
 		return (keystone.get('host') || 'http://localhost:') + (keystone.get('port') || '32772');
 	})()
