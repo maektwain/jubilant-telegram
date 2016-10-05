@@ -55,7 +55,7 @@ keystone.import('models');
 
 keystone.set('locals', {
 	_: require('underscore'),
-	env: keystone.get('.env'),
+	//env: keystone.get('.env'),
 	utils: keystone.utils,
 	moment: require('moment'),
 	js: 'javascript:;',
@@ -74,8 +74,8 @@ keystone.set('routes', require('./routes'));
 keystone.set('email locals', {
 	utils: keystone.utils,
 	host: (function() {
-		if (keystone.get('env') === 'staging') return '';
-		if (keystone.get('env') === 'production') return 'http://theupscale.in';
+		if (process.env.NODE_ENV === 'staging') return '';
+		if (process.env.NODE_ENV === 'production') return 'http://theupscale.in';
 		return (keystone.get('host') || 'http://localhost:') + (keystone.get('port') || '32772');
 	})()
 });
