@@ -29,7 +29,8 @@ keystone.init({
 
 	'auto update': true,
 
-	'mongo' : process.env.MONGO_URI || "mongodb://localhost/upscale",
+	'mongo' : process.env.MONGO_URI,
+	'cloudinary config' : process.env.CLOUDINARY_URL,
 
 	'session': true,
 	'session store':'mongo',
