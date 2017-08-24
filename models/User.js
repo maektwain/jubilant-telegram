@@ -50,7 +50,24 @@ User.add({
 
 });
 
+User.schema.pre('save', function(next){
 
+	var user = this;
+
+	async.parallel([
+		function(done){
+			user.gravatar = crypto.createHash('md5').update(user.email.toLowerCase().trim()).digest('hex');
+			return done();
+		}
+
+	], next);
+
+});
+
+User.schema.methods.wasActive = function () {
+	this.lastActiveOn = new Date();
+	return this;
+}
 
 // Provide access to Keystone
 User.schema.virtual('canAccessKeystone').get(function() {
@@ -62,7 +79,7 @@ User.schema.virtual('canAccessKeystone').get(function() {
 User.schema.virtual('avatarUrl').get(function() {
 	if (this.photo.exists) return this._.photo.thumbnail(120,120);
 	if (this.services.facebook.isConfigured && this.services.facebook.avatar) return this.services.facebook.avatar;
-	if (this.gravatar) return 'http://www.gravatar.com/avatar/' + this.gravatar + '?d=http%3A%2F%2Fsydjs.com%2Fimages%2Favatar.png&r=pg';
+	if (this.gravatar) return 'http://www.gravatar.com/avatar/' + this.gravatar + '?d=http%3A%2F%2Ftheupscale.in%2Fimages%2Favatar.png&r=pg';
 });
 
 

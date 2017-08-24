@@ -14,7 +14,7 @@ mixin form-join(args)
 				h4.modal-title Join Upscale
 		div(class=args.modal ? 'modal-body' : null)
 			include ../../includes/social-signin
-			p.auth-form-divider: span.auth-form-divider-text or
+			p.auth-form-divider: span.auth-form-divider-text or 
 			//- p Or use your email, that's okay too:
 			form(method='post', action='/join', autocomplete='off', novalidate).auth-form
 				input(type='hidden', name='action', value='join')

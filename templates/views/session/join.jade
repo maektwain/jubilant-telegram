@@ -1,15 +1,16 @@
 extends ../../layouts/default
-
+		
 block flash-messages
 	//- intentionally blank
 
 block content
 	.container-xs.content-section.row
-		.page-intro.col-md-3.col-md-offset-3
-			h1 Join Upscale
+		.page-intro.col-md-6.col-md-offset-3
+			h1(style='text-align: center') Join Upscale
 			+flash-messages(messages)
 		.page-content.col-md-6.col-md-offset-3
 			+auth-forms({ modal: false, initial: 'join' })
+			
 
 block js
 	script.

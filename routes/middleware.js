@@ -37,7 +37,7 @@ exports.initLocals = function(req, res, next) {
 	locals.basedir = keystone.get('basedir');
 
 	locals.page = {
-		title: 'Upscale Consultancy Services',
+		title: 'Upscale - Creating Ecosystem For Product Driven Development',
 		path: req.url.split("?")[0] // strip the query - handy for redirecting back to the page
 	};
 
@@ -70,6 +70,28 @@ exports.flashMessages = function(req, res, next) {
 	next();
 
 };
+
+/**
+	Inits the error handler functions into `req`
+*/
+
+exports.initErrorHandlers = function(req, res, next) {
+	res.err = function(err, title, message) {
+		res.status(500).render('errors/500', {
+			err: err,
+			errorTitle: title,
+			errorMsg: message
+		});
+	}
+	res.notfound = function(title, message) {
+		res.status(404).render('errors/404', {
+			errorTitle: title,
+			errorMsg: message
+		});
+	}
+	next();
+};
+
 
 
 /**

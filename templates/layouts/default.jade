@@ -10,7 +10,7 @@ html
 		meta(name="viewport", content="width=device-width, initial-scale=1.0")
 		meta(http-equiv="X-UA-Compatible" content="IE=edge")
 
-		title= title || 'Upscale Consultancy: Open | Data | Automata'
+		title= page.title
 		link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
 
 		//- Customise the stylesheet for your site by editing /public/styles/site.less
@@ -61,7 +61,7 @@ html
 			
 			//- Flash messages allow you to display once-off status messages to users, e.g. form
 			//- validation errors, success messages, etc.
-			+flash-messages(messages)
+			//+flash-messages(messages)
 
 			//- The content block should contain the body of your template's content
 			
@@ -72,7 +72,10 @@ html
 		.container: #footer
 
 			//- You don't _have_ to include a link saying your site is powered by KeystoneJS, but we appreciate it!
-			p Powered by <a href="http://keystonejs.com" target="_blank">KeystoneJS & Developed By Upscale</a>.
+			p All copy rights reserved to Upscale and belonging partners. 
+
+			p <a href="http://keystonejs.com" target="_blank">Powered By KeystoneJS & Developed By Upscale Technology Team</a>.
+			
 			//- MODALS
 		block modal
 		if !user

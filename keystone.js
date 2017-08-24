@@ -2,7 +2,7 @@
 // customising the .env file in your project's root folder.
 
 require('babel-register')({only: /\/graphql\/.*/ });
-require('dotenv').load();
+//require('dotenv').load();
 
 // Require keystone
 var keystone = require('keystone');
@@ -29,7 +29,8 @@ keystone.init({
 
 	'auto update': true,
 
-	//'mongo': process.env.MONGO_URI || 'mongodb://localhost' + pkg.name,
+	'mongo' : process.env.MONGODB_URI,
+	'cloudinary config' : process.env.CLOUDINARY_URL,
 
 	'session': true,
 	'session store':'mongo',
@@ -54,7 +55,7 @@ keystone.import('models');
 
 keystone.set('locals', {
 	_: require('underscore'),
-	env: keystone.get('env'),
+	//env: keystone.get('.env'),
 	utils: keystone.utils,
 	moment: require('moment'),
 	js: 'javascript:;',
@@ -73,9 +74,9 @@ keystone.set('routes', require('./routes'));
 keystone.set('email locals', {
 	utils: keystone.utils,
 	host: (function() {
-		if (keystone.get('env') === 'staging') return '';
-		if (keystone.get('env') === 'production') return '	';
-		return (keystone.get('host') || 'http://localhost:') + (keystone.get('port') || '3000');
+		if (process.env.NODE_ENV	 === 'staging') return '';
+		if (process.env.NODE_ENV === 'production') return 'http://theupscale.in';
+		return (keystone.get('host') || 'http://localhost:') + (keystone.get('port') || '32772');
 	})()
 });
 
@@ -100,7 +101,7 @@ keystone.set('email tests', require('./routes/emails'));
 // Configure the navigation bar in Keystone's Admin UI
 
 keystone.set('nav', {
-	'posts': ['posts', 'post-categories'],
+	'posts': ['posts','post-comments', 'post-categories'],
 	'enquiries': 'enquiries',
 	'users': 'users'
 });
