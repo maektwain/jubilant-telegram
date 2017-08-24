@@ -9,7 +9,7 @@ exports = module.exports = function(req, res) {
 		locals = res.locals;
 
 	locals.section = 'me';
-	locals.page.title = 'Settings - Finocial';
+	locals.page.title = 'Settings - Upscale';
 
 
 	view.on('post', { action: 'profile.details' }, function(next) {
